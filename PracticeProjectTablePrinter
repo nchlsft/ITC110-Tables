@@ -31,3 +31,6 @@ def print_table(tableData):
         print line
 
 print_table(tableData)
+
+
+# Still struggling with this so I went to reddit for help. Still not exactly sure about it.
