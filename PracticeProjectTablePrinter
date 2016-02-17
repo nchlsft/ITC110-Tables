@@ -1,39 +1,33 @@
-tableData = [['apples', 'oranges', 'cherries', 'banana'],
-             ['Alice', 'Bob', 'Carol', 'David'],
-             ['dogs', 'cats', 'moose', 'goose']]
+tableData = [
+    ['apples', 'oranges', 'cherries', 'banana'],
+    ['Alice', 'Bob', 'Carol', 'David'],
+    ['dogs', 'cats', 'moose', 'goose'],
+    ]
 
-def printTable():
+def colWidth(tableData):
     colWidths = [0] * len(tableData)
-    x = 0
-    y = 0
-    z = 0
-    for c in tableData:
-        for w in tableData[0]:
-            if len(w) > x:
-                x = len(w)
-        colWidths[0] = x
-        for w in tableData[1]:
-            if len(w) > y:
-                y = len(w)
-        colWidths[1] = y
-        for w in tableData[2]:
-            if len(w) > z:
-                z = len(w)
-        colWidths[2] = z
+    for col in range(len(tableData)):
+        for item in tableData[col]:
+            if len(item) > colWidths[col]:
+                colWidths[col] = len(item)
+    return colWidths
 
-    colWidths.sort()
-    maxWidth = colWidths[-1]
+def pivot(tableData):
+    columns = []
+    for item in range(len(tableData[0])):
+        for col in range(len(tableData)):
+            try:
+                columns[item].append(tableData[col][item])
+            except:
+                columns.append([tableData[col][item]])
+    return columns
 
-    column = []
-    c = 0
-    for i in range(len(tableData[0])):
-        for j in range(len(tableData)):
-            column.append(tableData[j][i])
+def print_table(tableData):
+    length = colWidth(tableData)
+    for row in pivot(tableData):
+        line = ''
+        for item in range(len(row)):
+            line += row[item].rjust(length[item] + 1)
+        print line
 
-    for i in tableData[0]:
-        for j in tableData:
-            print(column[c].rjust(maxWidth), end='')
-            c += 1
-        print()
-
-printTable()
+print_table(tableData)
