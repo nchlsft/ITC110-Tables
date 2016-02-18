@@ -27,7 +27,7 @@ def print_table(tableData):
     for row in pivot(tableData):
         line = ''
         for item in range(len(row)):
-            line += row[item].rjust(length[item] + 1)
+            line += row[item].center(length[item] + 4)
         print line
 
 print_table(tableData)
